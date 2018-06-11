@@ -10,9 +10,10 @@
     </head>
     <body>
      
-      
+      <!-- Container 1 -->
       <div class="to-do-items flex-container"> 
-        <table id="myTable">
+          <div class="sub-container">
+        <table class="table" id="myTable">
           <tr>
             <th>Activity</th>
             <th>Details</th> 
@@ -27,17 +28,81 @@
          
         </table >
       </div>
-      <div class="menu flex-container">
-        <div class="menu-buttons"> </div>
-        <p>
-          Menu options
-        </p>
-        
-
+        <br> 
+        <div class="sub-container">
+        <table class="table" id="myTable">
+            <tr>
+              <th>Activity</th>
+              <th>Details</th> 
+              
+            </tr>
+            <tr>
+              <td>Shower:</td>
+              
+              <td>Go take a shower</td>
+              
+            </tr>
+           
+          </table >
+        </div>
       </div>
-      
+      <br>
+<!-- container 2-->
+<div class="to-do-items flex-container"> 
+  <div class="sub-container">
+    <table class="table" id="myTable">
+        <tr>
+          <th>Activity</th>
+          <th>Details</th> 
           
-          <button onclick="myFunction()">Try it</button>
+        </tr>
+        <tr>
+          <td>Shower:</td>
+          
+          <td>Go take a shower</td>
+         
+          
+        </tr>
+        <tr>
+            <td>Shower:</td>
+            
+            <td>Go take a shower</td>
+           
+            
+          </tr>
+          <tr>
+              <td>Shower:</td>
+              
+              <td>Go take a shower</td>
+             
+              
+            </tr>
+       
+      </table >
+    </div>
+    <div class=sub-container>
+        <div class="menu-buttons"> 
+            <p>
+              Menu options
+            </p>
+            
+    
+          </div>
+        </div> 
+
+      
+  </div>
+  <br>
+
+ 
+
+
+
+      <div class="menu flex-container">
+        
+    </div>
+          <!-- We could probably just do this delete all rows that are checked instead -->
+          <button onclick="myFunction()">This button deletes the first row of the table</button>
 
           <script>
           function myFunction() {
@@ -46,8 +111,6 @@
           </script>
 
 
-      We are using node <script>document.write(process.versions.node)</script>,
-      Chrome <script>document.write(process.versions.chrome)</script>,
-      and Electron <script>document.write(process.versions.electron)</script>.
+      
     </body>
   </html>
