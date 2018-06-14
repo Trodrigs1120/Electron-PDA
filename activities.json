@@ -1,0 +1,19 @@
+[
+{ 
+    "time": "Daily",
+    "activity": "Sweep" ,
+    "task": "Sweep your room"
+
+},
+{ 
+    "time": "Weekly",
+    "activity": "Water Plant" ,
+    "task": "Make sure Fernies Sanders doesn't die"
+
+},
+{
+"time": "Monthly",
+    "activity": "Wash Sheets" ,
+    "task": "Wash your protective sheets for the comforter and  mattress"
+	}
+]
