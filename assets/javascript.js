@@ -118,17 +118,17 @@ $(document).ready(function() {
             function WriteTasks(){
                 
                 if (i==0){
-                    fs.writeFile("./test.txt", ("["+'{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+                    fs.writeFile("./test.json", ("["+'{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
                         if (err) throw err;
                        console.log('prepended');
                    });
                 }else if(i===activities.length-1){
-                    fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+"]"), (err) => {
+                    fs.appendFile("./test.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+"]"), (err) => {
                         if (err) throw err;
                        console.log('It\'s saved!');
                    });
                 }else{
-                    fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+                    fs.appendFile("./test.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
                         if (err) throw err;
                        console.log('It\'s saved!');
                     });
