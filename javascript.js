@@ -8,6 +8,7 @@ $(document).ready(function() {
     let ToWritetoText
     taskintake()
 
+    
     function taskintake() {
 
         fs.readFile('activities.json', (err, data) => {
@@ -45,6 +46,7 @@ $(document).ready(function() {
         console.log(activities);
 
     }
+   
 
 
 
@@ -70,22 +72,44 @@ $(document).ready(function() {
     })
 
     $("#submit").on("click", function() {
-        let Activity = $("#task-name").val().trim();
-        let Details = $("#task-details").val().trim();
+        // let Activity = $("#task-name").val().trim();
+        // let Details = $("#task-details").val().trim();
 
-        let NewTask = {
-            Activity: Activity,
-            Details: Details,
-        }
+        // let NewTask = {
+        //     Activity: Activity,
+        //     Details: Details,
+        // }
 
-        let activities = (JSON.stringify(activities))
-        console.log(activities)
+        //  let activities = (JSON.stringify(activities))
+        console.log(activities[0])
+        console.log(activities[1])
+        console.log(activities[2])
         // alert(NewTask.Activity)
         // $("#myTable").append("<tr><td>" + NewTask.Activity + "</td><td>" + NewTask.Details + "</td>");
-        fs.appendFile("./test.txt", (NewTask.activity + NewTask.Details), (err) => {
-            if (err) throw err;
-            console.log('It\'s saved!');
-        });
+        
+        //Switch statement, if i=0 we start it with [ if i=activities.length we end it in ]
+
+        // think I need to use recursion for this to write successfully
+        //something like increment it like a for loop, but just calling it back to the function itself until its exit condition is met.
+         for(let i=0; i<activities.length; i++){
+            if (i=0){
+                fs.writeFile("./test.txt", ("["), (err) => {
+                    if (err) throw err;
+                   console.log('prepended');
+               });
+            }
+            fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+                if (err) throw err;
+               console.log('It\'s saved!');
+           });
+           if (i=activities.length) {
+            fs.appendFile("./test.txt", ("]"), (err) => {
+                if (err) throw err;
+               console.log('It\'s saved!');
+           });
+           }
+         }
+        
     })
 
 })
