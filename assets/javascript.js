@@ -91,30 +91,57 @@ $(document).ready(function() {
 
         // think I need to use recursion for this to write successfully
         //something like increment it like a for loop, but just calling it back to the function itself until its exit condition is met.
-         for(let i=0; i<activities.length; i++){
-            if (i=0){
-                fs.writeFile("./test.txt", ("["), (err) => {
-                    if (err) throw err;
-                   console.log('prepended');
-               });
-            }
-            fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
-                if (err) throw err;
-               console.log('It\'s saved!');
-           });
-           if (i=activities.length) {
-            fs.appendFile("./test.txt", ("]"), (err) => {
-                if (err) throw err;
-               console.log('It\'s saved!');
-           });
-           }
-         }
+
+        WriteTasks()
+
+        //  for(let i=0; i<activities.length; i++){
+        //     if (i=0){
+        //         fs.writeFile("./test.txt", ("["), (err) => {
+        //             if (err) throw err;
+        //            console.log('prepended');
+        //        });
+        //     }
+        //     fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+        //         if (err) throw err;
+        //        console.log('It\'s saved!');
+        //    });
+        //    if (i=activities.length) {
+        //     fs.appendFile("./test.txt", ("]"), (err) => {
+        //         if (err) throw err;
+        //        console.log('It\'s saved!');
+        //    });
+        //    }
+        //  }
         
     })
-
-})
-
+            let i=0;
+            function WriteTasks(){
+                
+                if (i==0){
+                    fs.writeFile("./test.txt", ("["+'{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+                        if (err) throw err;
+                       console.log('prepended');
+                   });
+                }else if(i===activities.length-1){
+                    fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+"]"), (err) => {
+                        if (err) throw err;
+                       console.log('It\'s saved!');
+                   });
+                }else{
+                    fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+                        if (err) throw err;
+                       console.log('It\'s saved!');
+                    });
+                }
+                i++
+                if(i<activities.length){
+                    WriteTasks()
+                }
+            }
+           
+            
+            });
 // let TestTimer = setInterval(myTimer, 1000000); // the timer should be approximately an hour. It'll check for new records every hour
 // function myTimer() { 
 //     alert("Hello! I am an alert box!!");
-// }
+ 
