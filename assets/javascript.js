@@ -6,6 +6,7 @@ fs = electron.remote.require('fs')
 $(document).ready(function() {
     let activities
     let ToWritetoText
+    
     taskintake()
 
     
@@ -16,6 +17,8 @@ $(document).ready(function() {
             console.log(data)
             activities = JSON.parse(data);
             console.log(activities);
+            // let testtask = {time: "Weekly", activity: "Trim Beard", task: "Keep your beard growth under control"}
+            // activities.push(testtask)
             ToWritetoText = activities
             // console.lhbog(activities[0]);
             // console.log(activities[0].task)
@@ -64,7 +67,7 @@ $(document).ready(function() {
     $(".add-for-today").on("click", function() {
 
         // now we add the form for a new event
-        $(".menu-buttons").append('<form id="my-input"> <input type="radio" name="time" value="today" checked> Today<br> <input type="radio" name="time" value="week" checked> This Week<br> <input type="radio" name="time" value="month" checked> This Month<br> <input id="repeating" type="checkbox"> Repeating? <br>  Task name: <input type="text" name="task-name" id="task-name"><br> Details: <input type="text" name="task-details" id="task-details"><br> <button type="submit" form="my-input" id="submit" value="Submit">Submit</button></form>'); //append a new form element with id mySearch to <body>
+        $(".menu-buttons").append('<form id="my-input"> <input type="radio" name="time" id="Today" value="today" checked> Today<br> <input type="radio" name="time" value="week" checked> This Week<br> <input type="radio" name="time" value="month" checked> This Month<br> <input id="repeating" type="checkbox"> Repeating? <br>  Task name: <input type="text" name="task-name" id="task-name"><br> Details: <input type="text" name="task-details" id="task-details"><br> <button type="submit" form="my-input" id="submit" value="Submit">Submit</button></form>'); //append a new form element with id mySearch to <body>
         // the submit button needs to hide the added buttons and form fields,
         // we might want to disable the add item button or at least hide it until we're gonna add more stuff
         console.log("event fired")
@@ -72,8 +75,10 @@ $(document).ready(function() {
     })
 
     $("#submit").on("click", function() {
-        // let Activity = $("#task-name").val().trim();
-        // let Details = $("#task-details").val().trim();
+        let testtask
+         let TaskName = $("#task-name").val().trim();
+         let TaskDetails = $("#task-details").val().trim();
+         
 
         // let NewTask = {
         //     Activity: Activity,
@@ -81,54 +86,45 @@ $(document).ready(function() {
         // }
 
         //  let activities = (JSON.stringify(activities))
-        console.log(activities[0])
-        console.log(activities[1])
-        console.log(activities[2])
-        // alert(NewTask.Activity)
-        // $("#myTable").append("<tr><td>" + NewTask.Activity + "</td><td>" + NewTask.Details + "</td>");
+
+        if ($("#Today").is(':checked')) {
+            testtask = {time: "Daily", activity: TaskName, task: TaskDetails} 
+            activities.push(testtask)
+        } else if ($("#Weekly").is(':checked')){
+            testtask = {time: "Weekly", activity: "Trim Beard", task: "Keep your beard growth under control"}
+            activities.push(testtask)
+        } else {
+            testtask = {time: "Monthly", activity: "Trim Beard", task: "Keep your beard growth under control"}
+            activities.push(testtask)
+        }
+        
+        //  let testtask = {time: "Weekly", activity: "Trim Beard", task: "Keep your beard growth under control"}
+        //  activities.push(testtask)
+
+       
         
         //Switch statement, if i=0 we start it with [ if i=activities.length we end it in ]
 
-        // think I need to use recursion for this to write successfully
-        //something like increment it like a for loop, but just calling it back to the function itself until its exit condition is met.
-
         WriteTasks()
 
-        //  for(let i=0; i<activities.length; i++){
-        //     if (i=0){
-        //         fs.writeFile("./test.txt", ("["), (err) => {
-        //             if (err) throw err;
-        //            console.log('prepended');
-        //        });
-        //     }
-        //     fs.appendFile("./test.txt", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
-        //         if (err) throw err;
-        //        console.log('It\'s saved!');
-        //    });
-        //    if (i=activities.length) {
-        //     fs.appendFile("./test.txt", ("]"), (err) => {
-        //         if (err) throw err;
-        //        console.log('It\'s saved!');
-        //    });
-        //    }
-        //  }
+       
         
     })
             let i=0;
             function WriteTasks(){
                 
                 if (i==0){
-                    fs.writeFile("./test.json", ("["+'{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+                    fs.writeFile("./activities.json", ("["+'{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
                         if (err) throw err;
                        console.log('prepended');
                    });
                 }else if(i===activities.length-1){
-                    fs.appendFile("./test.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+"]"), (err) => {
+                    fs.appendFile("./activities.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+"]"), (err) => {
                         if (err) throw err;
                        console.log('It\'s saved!');
                    });
                 }else{
-                    fs.appendFile("./test.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
+                    fs.appendFile("./activities.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
                         if (err) throw err;
                        console.log('It\'s saved!');
                     });
