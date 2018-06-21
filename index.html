@@ -14,6 +14,7 @@
       <div class="to-do-items flex-container"> 
           <div class="sub-container">
         <table class="table" id="Daily">
+          <p> Daily goals</p>
           <tr>
             <th>Activity</th>
             <th>Details</th> 
@@ -29,6 +30,7 @@
         <br> 
         <div class="sub-container">
         <table class="table" id="Weekly">
+            <p> Weekly goals</p>
             <tr>
               <th>Activity</th>
               <th>Details</th> 
@@ -46,6 +48,7 @@
 <div class="to-do-items flex-container"> 
   <div class="sub-container">
     <table class="table" id="Monthly">
+        <p> Monthly goals</p>
         <tr>
           <th>Activity</th>
           <th>Details</th> 
@@ -60,7 +63,7 @@
             <p>
               Menu options
             </p>
-            <form id="my-input"> <input type="radio" name="time" value="today" checked> Today<br> <input type="radio" name="time" value="week" checked> This Week<br> <input type="radio" name="time" value="month" checked> This Month<br> <input id="repeating" type="checkbox"> Repeating? <br>  Task name: <input type="text" name="task-name" id="task-name"><br> Details: <input type="text" name="task-details" id="task-details"><br> <button type="submit" form="my-input" id="submit" value="Submit">Submit</button></form>
+            <form id="my-input"> <input type="radio" name="time" value="today" id="Today" checked> Today<br> <input type="radio" name="time" value="week" id="Weekly" > This Week<br> <input type="radio" name="time" value="month" id="Monthly"> This Month<br> <input id="repeating" type="checkbox"> Repeating? <br>  Task name: <input type="text" name="task-name" id="task-name"><br> Details: <input type="text" name="task-details" id="task-details"><br> <button type="submit" form="my-input" id="submit" value="Submit">Submit</button></form>
     
           </div>
         </div> 
@@ -81,8 +84,10 @@
 
           <script>
           function myFunction() {
-              document.getElementById("myTable").deleteRow(1);
-              alert("Hello! I am an alert box!!");
+            if ($("#Today").is(':checked')) {
+            console.log("checked") 
+           
+        }
               
           }
           </script>
