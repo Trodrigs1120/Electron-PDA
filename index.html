@@ -14,7 +14,7 @@
       <div class="to-do-items flex-container"> 
           <div class="sub-container">
         <table class="table" id="Daily">
-          <p> Daily goals</p>
+          <p class="TableHeader"> <b>Daily Goals</b></p>
           <tr>
             <th>Activity</th>
             <th>Details</th> 
@@ -26,71 +26,56 @@
           </tr>
          
         </table >
-      </div>
-        <br> 
-        <div class="sub-container">
+
         <table class="table" id="Weekly">
-            <p> Weekly goals</p>
-            <tr>
-              <th>Activity</th>
-              <th>Details</th> 
-              
-            </tr>
-            <tr>
-             
-            </tr>
+          <p class="TableHeader"> <b>Weekly Goals</b></p>
+          <tr>
+            <th>Activity</th>
+            <th>Details</th> 
+            
+          </tr>
+          <tr>
            
-          </table >
-        </div>
+          </tr>
+         
+        </table >
+
+        <table class="table" id="Monthly">
+          <p class="TableHeader"> <b>Monthly Goals</b></p>
+          <tr>
+            <th>Activity</th>
+            <th>Details</th> 
+            
+          </tr>
+         
+         
+        </table >
+
       </div>
-      <br>
-<!-- container 2-->
-<div class="to-do-items flex-container"> 
-  <div class="sub-container">
-    <table class="table" id="Monthly">
-        <p> Monthly goals</p>
-        <tr>
-          <th>Activity</th>
-          <th>Details</th> 
-          
-        </tr>
-       
-       
-      </table >
     </div>
-    <div class=sub-container>
-        <div class="menu-buttons"> 
+
+  <div class="menu-buttons to-do-items flex-container">
+    <div class="sub-container">
+        <br>
             <p>
               Menu options
             </p>
-            <form id="my-input"> <input type="radio" name="time" value="today" id="Today" checked> Today<br> <input type="radio" name="time" value="week" id="Weekly" > This Week<br> <input type="radio" name="time" value="month" id="Monthly"> This Month<br> <input id="repeating" type="checkbox"> Repeating? <br>  Task name: <input type="text" name="task-name" id="task-name"><br> Details: <input type="text" name="task-details" id="task-details"><br> <button type="submit" form="my-input" id="submit" value="Submit">Submit</button></form>
-    
+            <form id="my-input"> <input type="radio" name="time" value="today" id="Today" checked> Today<br> <input type="radio" name="time" value="week" id="Weekly" > This Week<br> <input type="radio" name="time" value="month" id="Monthly"> This Month<br>  Task name: <input type="text" name="task-name" id="task-name"><br> Details: <input type="text" name="task-details" id="task-details"><br> <button type="submit" form="my-input" id="submit" value="Submit">Submit</button></form>
           </div>
-        </div> 
-
-      
-  </div>
-  <br>
-
- 
-
-
-
-      <div class="menu flex-container">
         
-    </div>
-          <!-- We could probably just do this delete all rows that are checked instead -->
-          <button onclick="myFunction()">This button deletes the first row of the table</button>
+  </div>
+  <!-- <div class="box">
+      <div>One</div>
+      <div>Two</div>
+      <div>Three</div>
+      <div>Four</div>
+      <div>Five</div>
+      <div>Six</div>
+      <div>Seven</div>
+      <div>Eight</div>
+    </div> -->
+          
 
-          <script>
-          function myFunction() {
-            if ($("#Today").is(':checked')) {
-            console.log("checked") 
-           
-        }
-              
-          }
-          </script>
 
 
       
