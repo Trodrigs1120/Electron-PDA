@@ -1,143 +1,114 @@
 electron = require('electron')
 fs = electron.remote.require('fs')
 
-// we'll go ahead and write everything into json after we finish inputting
+
 
 $(document).ready(function() {
     let activities
-    let ToWritetoText
-    
+    // let ToWritetoText unused at this time
+
     taskintake()
 
-    
+
     function taskintake() {
 
         fs.readFile('activities.json', (err, data) => {
             if (err) throw err;
-            console.log(data)
             activities = JSON.parse(data);
             console.log(activities);
-            // let testtask = {time: "Weekly", activity: "Trim Beard", task: "Keep your beard growth under control"}
-            // activities.push(testtask)
             ToWritetoText = activities
-            // console.lhbog(activities[0]);
-            // console.log(activities[0].task)
 
-            //appending tasks to their tables
+
             for (let i = 0; i < activities.length; i++) {
                 switch (activities[i].time) {
                     case "Daily":
                         //we will need to rewrite this for the loop once i know it works
-                        $("#Daily").append("<tr><td>" + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
+                     
+                        $("#Daily").append("<tr><td> <input id="+'Task'+i+ " type='checkbox'> " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
                         break;
 
                     case "Weekly":
-                        $("#Weekly").append("<tr><td>" + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
+                        $("#Weekly").append("<tr><td> <input id="+'Task'+i+ " type='checkbox'>  " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
 
                         break;
                     case "Monthly":
-                        $("#Monthly").append("<tr><td>" + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
+                        $("#Monthly").append("<tr><td><input id="+'Task'+i+ " type='checkbox'>   " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
 
                         break;
                 }
             }
 
         });
-
-        console.log('This is after the read call');
-        //probably going to be putting this in a loop when we have more than 1 item
-        console.log(activities);
-
     }
-   
-
-
-
-
-    // $(".to-do-items").append('<p> Take a shower</p>');
-    // here we'll append all the daily to do items
-
-    // now we create a button in order to make the form appear
-    Button = $("<button>Add Item</button>");
-    Button.addClass("add-for-today")
-    $(".menu-buttons").append(Button);
-
-
-    // const multiplyES6 = (x, y) => { return x * y };
-    $(".add-for-today").on("click", function() {
-
-        // now we add the form for a new event
-        $(".menu-buttons").append('<form id="my-input"> <input type="radio" name="time" id="Today" value="today" checked> Today<br> <input type="radio" name="time" value="week" checked> This Week<br> <input type="radio" name="time" value="month" checked> This Month<br> <input id="repeating" type="checkbox"> Repeating? <br>  Task name: <input type="text" name="task-name" id="task-name"><br> Details: <input type="text" name="task-details" id="task-details"><br> <button type="submit" form="my-input" id="submit" value="Submit">Submit</button></form>'); //append a new form element with id mySearch to <body>
-        // the submit button needs to hide the added buttons and form fields,
-        // we might want to disable the add item button or at least hide it until we're gonna add more stuff
-        console.log("event fired")
-        console.log(ToWritetoText)
-    })
 
     $("#submit").on("click", function() {
         let testtask
-         let TaskName = $("#task-name").val().trim();
-         let TaskDetails = $("#task-details").val().trim();
-         
+        let TaskName = $("#task-name").val().trim();
+        let TaskDetails = $("#task-details").val().trim();
 
-        // let NewTask = {
-        //     Activity: Activity,
-        //     Details: Details,
-        // }
 
-        //  let activities = (JSON.stringify(activities))
+       
 
         if ($("#Today").is(':checked')) {
-            testtask = {time: "Daily", activity: TaskName, task: TaskDetails} 
-            activities.push(testtask)
-        } else if ($("#Weekly").is(':checked')){
-            testtask = {time: "Weekly", activity: "Trim Beard", task: "Keep your beard growth under control"}
-            activities.push(testtask)
+            newtask = {
+                time: "Daily",
+                activity: TaskName,
+                task: TaskDetails
+            }
+            activities.push(newtask)
+        } else if ($("#Weekly").is(':checked')) {b
+            newtask = {
+                time: "Weekly",
+                activity: TaskName,
+                task: TaskDetails
+            }
+            activities.push(newtask)
         } else {
-            testtask = {time: "Monthly", activity: "Trim Beard", task: "Keep your beard growth under control"}
-            activities.push(testtask)
+            newtask = {
+                time: "Monthly",
+                activity: TaskName,
+                task: TaskDetails
+            }
+            
+            activities.push(newtask)
         }
-        
+
         //  let testtask = {time: "Weekly", activity: "Trim Beard", task: "Keep your beard growth under control"}
         //  activities.push(testtask)
 
-       
-        
-        //Switch statement, if i=0 we start it with [ if i=activities.length we end it in ]
-
         WriteTasks()
 
-       
-        
+
+
     })
-            let i=0;
-            function WriteTasks(){
-                
-                if (i==0){
-                    fs.writeFile("./activities.json", ("["+'{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
-                        if (err) throw err;
-                       console.log('prepended');
-                   });
-                }else if(i===activities.length-1){
-                    fs.appendFile("./activities.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+"]"), (err) => {
-                        if (err) throw err;
-                       console.log('It\'s saved!');
-                   });
-                }else{
-                    fs.appendFile("./activities.json", ('{"time":' +'"'+ activities[i].time+'"'+","+'"activity":' +'"'+ activities[i].activity+'"'+","+ '"task":'+'"'+ activities[i].task +'"'+'}'+","), (err) => {
-                        if (err) throw err;
-                       console.log('It\'s saved!');
-                    });
-                }
-                i++
-                if(i<activities.length){
-                    WriteTasks()
-                }
-            }
-           
-            
+    let i = 0;
+
+    function WriteTasks() {
+
+        if (i == 0) {
+            fs.writeFile("./activities.json", ("[" + '{"time":' + '"' + activities[i].time + '"' + "," + '"activity":' + '"' + activities[i].activity + '"' + "," + '"task":' + '"' + activities[i].task + '"' + '}' + ","), (err) => {
+                if (err) throw err;
+                console.log('prepended');
             });
+        } else if (i === activities.length - 1) {
+            fs.appendFile("./activities.json", ('{"time":' + '"' + activities[i].time + '"' + "," + '"activity":' + '"' + activities[i].activity + '"' + "," + '"task":' + '"' + activities[i].task + '"' + '}' + "]"), (err) => {
+                if (err) throw err;
+                console.log('It\'s saved!');
+            });
+        } else {
+            fs.appendFile("./activities.json", ('{"time":' + '"' + activities[i].time + '"' + "," + '"activity":' + '"' + activities[i].activity + '"' + "," + '"task":' + '"' + activities[i].task + '"' + '}' + ","), (err) => {
+                if (err) throw err;
+                console.log('It\'s saved!');
+            });
+        }
+        i++
+        if (i < activities.length) {
+            WriteTasks()
+        }
+    }
+
+
+});
 // let TestTimer = setInterval(myTimer, 1000000); // the timer should be approximately an hour. It'll check for new records every hour
 // function myTimer() { 
 //     alert("Hello! I am an alert box!!");
- 
