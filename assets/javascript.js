@@ -6,6 +6,16 @@ fs = electron.remote.require('fs')
 $(document).ready(function() {
     let activities
     // let ToWritetoText unused at this time
+    Button=$("<button>Add Item</button>");
+    Button.addClass("DeleteRows")
+    $(".menu-buttons").append(Button);
+
+    $(".DeleteRows").on("click", function(){
+        // Lets check each
+ 
+    } )
+
+//  $(".add-for-today").onclick = AddForm
 
     taskintake()
 
@@ -18,21 +28,27 @@ $(document).ready(function() {
             console.log(activities);
             ToWritetoText = activities
 
-
+            let TableLength
             for (let i = 0; i < activities.length; i++) {
                 switch (activities[i].time) {
                     case "Daily":
-                        //we will need to rewrite this for the loop once i know it works
-                     
-                        $("#Daily").append("<tr><td> <input id="+'Task'+i+ " type='checkbox'> " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
+                    
+                        //  TableLength = document.getElementById("Daily").rows.length - 1 ; 
+                        // $("#Daily").append("<tr><td> <input id="+'Task'+TableLength+ " type='checkbox'> " + activities[i].activity + "</td><td>" + activities[i].task + " </td>");
+                        //We are going to be deleting an item from the array rather than the table because the page reloads after we make the change anyway
+                        $("#Daily").append("<tr><td> <input id="+i+" type='checkbox'> " + activities[i].activity + "</td><td>" + activities[i].task + " </td>");
+                        
                         break;
 
                     case "Weekly":
-                        $("#Weekly").append("<tr><td> <input id="+'Task'+i+ " type='checkbox'>  " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
-
+                    //   TableLength = document.getElementById("Weekly").rows.length - 1 ;
+                  
+                        $("#Weekly").append("<tr><td> <input id="+i+" type='checkbox'>  " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
+                    
                         break;
                     case "Monthly":
-                        $("#Monthly").append("<tr><td><input id="+'Task'+i+ " type='checkbox'>   " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
+                    //   TableLength = document.getElementById("Monthly").rows.length - 1 ; 
+                        $("#Monthly").append("<tr><td><input id="+i+ " type='checkbox'>   " + activities[i].activity + "</td><td>" + activities[i].task + "</td>");
 
                         break;
                 }
@@ -81,6 +97,8 @@ $(document).ready(function() {
 
 
     })
+    
+
     let i = 0;
 
     function WriteTasks() {
