@@ -58,7 +58,8 @@ $(document).ready(function() {
     }
 
     $("#submit").on("click", function() {
-        let testtask
+        Event.preventDefault();
+        let newtask
         let TaskName = $("#task-name").val().trim();
         let TaskDetails = $("#task-details").val().trim();
 
